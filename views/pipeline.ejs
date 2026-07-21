@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipeline — Portal</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <span class="brand">Portal</span>
+    <ul>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/clients">Clients</a></li>
+      <li><a href="/pipeline" class="active">Pipeline</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <div class="page-header">
+      <h1 class="page-title">Pipeline</h1>
+      <span class="badge"><%= pipeline.length %> deals</span>
+    </div>
+
+    <div class="card">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Client Name</th>
+            <th>Deal Stage</th>
+            <th>Value</th>
+            <th>Expected Close Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% pipeline.forEach(deal => { %>
+          <tr>
+            <td><strong><%= deal.clientName %></strong></td>
+            <td>
+              <span class="stage-badge stage-<%= deal.dealStage.toLowerCase().replace(/\s+/g, '-') %>">
+                <%= deal.dealStage %>
+              </span>
+            </td>
+            <td class="value-cell">$<%= deal.value.toLocaleString('en-US') %></td>
+            <td><%= new Date(deal.closeDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

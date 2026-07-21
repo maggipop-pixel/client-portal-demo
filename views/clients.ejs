@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clients — Portal</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <span class="brand">Portal</span>
+    <ul>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/clients" class="active">Clients</a></li>
+      <li><a href="/pipeline">Pipeline</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <div class="page-header">
+      <h1 class="page-title">Clients</h1>
+      <span class="badge"><%= clients.length %> total</span>
+    </div>
+
+    <div class="card">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Email</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% clients.forEach(client => { %>
+          <tr>
+            <td><strong><%= client.name %></strong></td>
+            <td><%= client.company %></td>
+            <td><a href="mailto:<%= client.email %>"><%= client.email %></a></td>
+            <td>
+              <span class="status-badge status-<%= client.status.toLowerCase() %>">
+                <%= client.status %>
+              </span>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
