@@ -83,6 +83,46 @@ body {
   overflow: hidden;
 }
 
+/* ── Summary cards ── */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.summary-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #718096;
+}
+
+.summary-amount {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.summary-card-overdue .summary-amount { color: #c53030; }
+
+.overdue-cell { color: #c53030; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .summary-cards { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+}
+
 /* ── Table ── */
 .data-table {
   width: 100%;

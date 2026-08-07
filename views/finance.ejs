@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance — Portal</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <span class="brand">Portal</span>
+    <ul>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/clients">Clients</a></li>
+      <li><a href="/pipeline">Pipeline</a></li>
+      <li><a href="/finance" class="active">Finance</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <div class="page-header">
+      <h1 class="page-title">Finance</h1>
+      <span class="badge"><%= projects.length %> projects</span>
+    </div>
+
+    <div class="summary-cards">
+      <div class="summary-card">
+        <span class="summary-label">Held</span>
+        <span class="summary-amount">$<%= summary.held.toLocaleString('en-US') %></span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Collected</span>
+        <span class="summary-amount">$<%= summary.collected.toLocaleString('en-US') %></span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Expected</span>
+        <span class="summary-amount">$<%= summary.expected.toLocaleString('en-US') %></span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-label">Due to Vendors</span>
+        <span class="summary-amount">$<%= summary.dueToVendors.toLocaleString('en-US') %></span>
+      </div>
+      <div class="summary-card summary-card-overdue">
+        <span class="summary-label">Overdue</span>
+        <span class="summary-amount">$<%= summary.overdue.toLocaleString('en-US') %></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Collected</th>
+            <th>Expected</th>
+            <th>Due to Vendors</th>
+            <th>Overdue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% projects.forEach(project => { %>
+          <tr>
+            <td><strong><%= project.name %></strong></td>
+            <td class="value-cell">$<%= project.collected.toLocaleString('en-US') %></td>
+            <td>$<%= project.expected.toLocaleString('en-US') %></td>
+            <td>$<%= project.dueToVendors.toLocaleString('en-US') %></td>
+            <td class="<%= project.overdue > 0 ? 'overdue-cell' : '' %>">$<%= project.overdue.toLocaleString('en-US') %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
